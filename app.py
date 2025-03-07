@@ -23,7 +23,8 @@ def index():
 
 @app.route("/play", methods=["POST"])
 def play():
-    user_choice = request.json["choice"]
+    data = request.get_json()
+    user_choice = data["choice"]
     computer_choice = get_computer_choice()
     result = determine_winner(user_choice, computer_choice)
 
@@ -34,4 +35,4 @@ def play():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
